@@ -8,6 +8,13 @@ namespace Denombrements
 {
     class Program
     {
+        //FONCTION UNIQUE 6 plus de duplication!
+        static long Factorielle(int n)
+        {
+            long r = 1;
+            for (int k = 1; k <= n; k++) r *= k;
+            return r;
+        }
         static void Main(string[] args)
         {
             int c = 1;
@@ -17,57 +24,43 @@ namespace Denombrements
                 Console.WriteLine("Arrangement ...................... 2");
                 Console.WriteLine("Combinaison ...................... 3");
                 Console.WriteLine("Quitter .......................... 0");
-                Console.Write("Choix :                            ");
+                Console.Write("Choix :                                 ");
                 c = int.Parse(Console.ReadLine());
 
                 if (c == 0) { Environment.Exit(0); }
 
                 if (c == 1)
                 {
-                    Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                    int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                                                           // calcul de r
-                    long r = 1;
-                    for (int k = 1; k <= n; k++)
-                        r *= k;
+                    Console.Write("nombre total d'éléments à gérer = ");
+                    int n = int.Parse(Console.ReadLine());
+                    long r = Factorielle(n);
                     Console.WriteLine(n + "! = " + r);
                 }
                 else
                 {
                     if (c == 2)
                     {
-                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
-                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                        // calcul de r
-                        long r = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r *= k;
-                        //Console.WriteLine("résultat = " + (r1 / r2));
-                        Console.WriteLine("A(" + t + "/" + n + ") = " + r);
+                        Console.Write("nombre total d'éléments à gérer = ");
+                        int n = int.Parse(Console.ReadLine());
+                        Console.Write("nombre total d'éléments à prendre");
+                        int p = int.Parse(Console.ReadLine());
+                        long r = Factorielle(n) / Factorielle(n - p);
+                        Console.WriteLine($"A{n},{p} = {r}");
                     }
-                    else
+                    else if (c == 3)
                     {
-                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
-                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                        // calcul de r1
-                        long r1 = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r1 *= k;
-                        // calcul de r2
-                        long r2 = 1;
-                        for (int k = 1; k <= n; k++)
-                            r2 *= k;
-                        // calcul de r3
-                        //Console.WriteLine("résultat = " + (r1 / r2));
-                        Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
+                        {
+                            Console.Write("nombre total d'éléments à gérer = ");
+                            int n = int.Parse(Console.ReadLine());
+                            Console.Write("nombre d'éléments à prendre");
+                            int p = int.Parse(Console.ReadLine());
+                            long r = Factorielle(n) / (Factorielle(p) * Factorielle(n - p));
+                            Console.WriteLine($"{n}, {p} = {r}");
+                        }
                     }
                 }
+
             }
-            Console.ReadLine();
         }
     }
 }
